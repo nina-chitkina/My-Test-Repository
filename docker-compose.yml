@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+
+  hosting:
+    build:
+      dockerfile: Dockerfile
+      context: ./ngrok
+    hostname: ngrok
+    depends_on:
+      - main
+    command: ngrok http 8080
+
+  main:
+    build:
+      dockerfile: ./PHP/Dockerfile
+      context: .
+    ports:
+      - 8080:8080
+    hostname: php      
+    command: php -S localhost:8080
