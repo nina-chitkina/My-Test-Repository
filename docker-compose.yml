@@ -14,7 +14,7 @@ services:
       - PORT=433
     depends_on:
       - main
-    command: ngrok http 8080
+    command: ngrok http -log=stdout 8080
 
     
 
