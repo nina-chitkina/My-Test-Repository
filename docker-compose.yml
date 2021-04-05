@@ -7,13 +7,7 @@ services:
       dockerfile: Dockerfile
       context: ./ngrok
     hostname: ngrok
-    ports:
-      - 4040:4040
-    environment:
-      - DOMAIN=squad_web
-      - PORT=433
-    depends_on:
-      - main
+    network_mode: host
     command: ngrok http -log=stdout 8080
 
     
@@ -23,7 +17,7 @@ services:
     build:
       dockerfile: ./PHP/Dockerfile
       context: .
+    hostname: php
     ports:
       - 8080:8080
-    hostname: php      
-    command: php -S localhost:8080
+    command: php -S 0.0.0.0:8080
