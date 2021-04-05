@@ -7,9 +7,17 @@ services:
       dockerfile: Dockerfile
       context: ./ngrok
     hostname: ngrok
+    ports:
+      - 4040:4040
+    environment:
+      - DOMAIN=squad_web
+      - PORT=433
     depends_on:
       - main
     command: ngrok http 8080
+
+    
+
 
   main:
     build:
