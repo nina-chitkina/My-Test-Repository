@@ -3,6 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update # buildkit
 
 RUN apt-get install -y wget unzip # buildkit
+RUN apt-get install -y curl
 
 ENV DEBIAN_FRONTEND=noninteractive
 

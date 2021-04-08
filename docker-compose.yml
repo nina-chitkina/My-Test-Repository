@@ -7,15 +7,17 @@ services:
       dockerfile: Dockerfile
       context: ./ngrok
     hostname: ngrok
-    depends_on:
-      - main
-    command: ngrok http 8080
+    network_mode: host
+    command: ngrok http -log=stdout 8080
+
+    
+
 
   main:
     build:
       dockerfile: ./PHP/Dockerfile
       context: .
+    hostname: php
     ports:
       - 8080:8080
-    hostname: php      
-    command: php -S localhost:8080
+    command: php -S 0.0.0.0:8080
